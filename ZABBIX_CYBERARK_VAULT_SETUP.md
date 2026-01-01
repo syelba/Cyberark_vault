@@ -197,7 +197,7 @@ SSLCertLocation=/var/lib/zabbix/ssl/certs
 ### 3.4 Validate Configuration
 
 ```bash
-sudo /usr/sbin/zabbix_server -c /etc/zabbix/zabbix_server.conf -T
+sudo zabbix_server -c /etc/zabbix/zabbix_server.conf -R config_cache_reload 2>&1 | head -20
 ```
 
 Expected output: `Validation successful`
