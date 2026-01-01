@@ -270,7 +270,7 @@ $DB['VAULT_DB_PATH']            = 'AppID=38427-PP-ILSSAFE-CERT&Query=Safe=AAM-PP
 $DB['VAULT_TOKEN']              = '';
 $DB['VAULT_CERT_FILE']          = '/var/lib/zabbix/ssl/certs/cyberark.pem';
 $DB['VAULT_KEY_FILE']           = '/var/lib/zabbix/ssl/certs/cyberark.pem';
-$DB['VAULT_CACHE']              = false;
+$DB['VAULT_CACHE']              = true;
 
 // Rest of configuration...
 $DB['DOUBLE_IEEE754']           = true;
