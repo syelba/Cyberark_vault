@@ -223,3 +223,13 @@ response = aimccp.get_password(
 print('Full Python Object: {}'.format(response))  
 print('Username: {}'.format(response['UserName']))  
 print('Password: {}'.format(response['Content']))
+
+
+"""
+in env file
+AAM_DEMO_PATH=cert.pem
+AAM_PASSPHRASE=password for certpem
+AAM_APP_ID=certid
+AAM_SAFE=certname
+AAM_OBJECT_NAME=password object name
+"""
