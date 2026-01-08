@@ -60,12 +60,11 @@ if __name__ == '__main__':
     if len(sys.argv) < 2:
         print("Usage: python cyberark_cert_auth.py <object_name1> [object_name2] ...")
         sys.exit(1)
-    
-    start_time = time.time()
+        
     object_names = sys.argv[1:]
     
     # Get all passwords asynchronously
     password_list = asyncio.run(get_passwords_async(object_names))
     
     print(password_list)
-    print(f"Execution time: {time.time() - start_time} seconds")
+    
