@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 import importlib.util
 from aam_python import *
 load_dotenv()
-ENCRYPTION_KEY = '' 
+ENCRYPTION_KEY = os.getenv('ENCRYPTION_KEY')
 
 def salt_one_way(password: bytes) -> bytes:
     """Hash a password using bcrypt (one-way)."""
