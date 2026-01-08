@@ -11,15 +11,6 @@ from aam_python import *
 load_dotenv()
 ENCRYPTION_KEY = os.getenv('ENCRYPTION_KEY')
 
-def salt_one_way(password: bytes) -> bytes:
-    """Hash a password using bcrypt (one-way)."""
-    return bcrypt.hashpw(password, bcrypt.gensalt())
-
-def encrypt_two_way(password: bytes, key: bytes) -> bytes:
-    """Encrypt a password using Fernet (two-way)."""
-    cipher = Fernet(key)
-    return cipher.encrypt(password)
-
 
 def decrypt_password(encrypted_password: bytes, key: bytes) -> bytes:
     """Decrypt a password using Fernet."""
