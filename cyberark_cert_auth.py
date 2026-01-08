@@ -1,16 +1,19 @@
 import os
 import ssl
 import json
-import http.client
 import urllib.parse
 import sys
+import asyncio
+import concurrent.futures
 from dotenv import load_dotenv
+import time
 
 load_dotenv()
 
 
 def get_password(object_name, **kwargs):
     """Get password from CyberArk for specified object name."""
+    import http.client
     
     # Config from env or kwargs
     app_id = kwargs.get('app_id') or os.getenv('AAM_APP_ID')
@@ -36,7 +39,21 @@ def get_password(object_name, **kwargs):
     data = json.loads(response.read().decode())
     conn.close()
     
-    return data.get('Content')
+    return object_name, data.get('Content')
+
+
+async def get_passwords_async(object_names, **kwargs):
+    """Get multiple passwords asynchronously."""
+    loop = asyncio.get_event_loop()
+    
+    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+        tasks = [
+            loop.run_in_executor(executor, lambda obj=obj_name: get_password(obj, **kwargs))
+            for obj_name in object_names
+        ]
+        results = await asyncio.gather(*tasks)
+    
+    return dict(results)
 
 
 if __name__ == '__main__':
@@ -44,9 +61,11 @@ if __name__ == '__main__':
         print("Usage: python cyberark_cert_auth.py <object_name1> [object_name2] ...")
         sys.exit(1)
     
-    # Get passwords for all object names from command line
+    start_time = time.time()
     object_names = sys.argv[1:]
     
-    for obj_name in object_names:
-        password = get_password(obj_name)
-        print(f"{obj_name}: {password}")
+    # Get all passwords asynchronously
+    password_list = asyncio.run(get_passwords_async(object_names))
+    
+    print(password_list)
+    print(f"Execution time: {time.time() - start_time} seconds")
