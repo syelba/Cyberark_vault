@@ -11,7 +11,7 @@ appID="38427-PP-ILSSAFE-CERT"
 safeName="AAM-PP-38427-ILSSAFE"
 
 # Username associated with the account
-userName="Operating System-UnmanagedAccounts-Linux-zabbix_server_database"
+userName="Operating System-UnmanagedAccounts-Linux-zabbix"
 
 # Base URI for the Cert AAM API endpoint
 baseURI="https://passwordvault.intel.com/AIMWebService/api/Accounts"
