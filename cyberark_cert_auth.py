@@ -18,7 +18,7 @@ async def get_password(object_name, semaphore, **kwargs):
         # Config from env or kwargs
         app_id = kwargs.get('app_id') or os.getenv('AAM_APP_ID')
         safe_name = kwargs.get('safe_name') or os.getenv('AAM_SAFE')
-        host = kwargs.get('host') or os.getenv('AAM_BASE_URI', 'https://passwordvault.intel.com')
+        host = kwargs.get('host') or os.getenv('AAM_BASE_URI')
         cert_path = kwargs.get('cert_path') or os.getenv('AAM_DEMO_PATH')
         cert_password = kwargs.get('cert_password') or os.getenv('AAM_PASSPHRASE')
         

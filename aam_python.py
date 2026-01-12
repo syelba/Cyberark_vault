@@ -6,10 +6,13 @@ import urllib.parse
 import os
 from dotenv import load_dotenv
 
+load_dotenv()
+
+
 class CCPPasswordREST(object):  
   
     # Runs on Initialization  
-    def __init__(self, verifyService = True, base_uri = 'https://passwordvault.intel.com'):
+    def __init__(self, verifyService = True, base_uri = os.getenv('AAM_BASE_URI')):
         # Declare Init Variables  
         self._base_uri = base_uri.rstrip('/').replace('https://','')  
         self._context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)

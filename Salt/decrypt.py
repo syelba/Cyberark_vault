@@ -25,7 +25,7 @@ if __name__ == '__main__':
     
 
     # Establish new session  
-    base_uri = os.getenv('AAM_BASE_URI', 'https://passwordvault.intel.com')
+    base_uri = os.getenv('AAM_BASE_URI')
     aimccp = CCPPasswordREST(base_uri=base_uri)
 
     # Load certificate based on available environment variables
