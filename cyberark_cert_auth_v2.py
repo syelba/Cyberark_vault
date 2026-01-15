@@ -49,3 +49,4 @@ if __name__ == '__main__':
     
     for obj_name in object_names:
         password = get_password(obj_name)
+        print(f"Object: {obj_name}, Password: {password}")
